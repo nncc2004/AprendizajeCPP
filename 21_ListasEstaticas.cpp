@@ -246,6 +246,7 @@ void Eliminar(){
     lista[i].servicio.tapadura = 0;
     lista[i].servicio.extraccion = 0;
     lista[i].servicio.limpieza = false;
+    cout<<"eliminado\n";
 }
 int main(){
     Iniciar();
