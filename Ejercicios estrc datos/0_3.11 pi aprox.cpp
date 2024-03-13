@@ -17,7 +17,7 @@ int main(){
 		cout<<mult1<<" * "<<mult2<<"\n";
 		cout<<"n = "<<i<<"\n";
 		cout<<pi;
-		//system("pause");
+		Sleep(1);
 	}
 	return 0;
 }
