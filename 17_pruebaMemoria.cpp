@@ -8,7 +8,7 @@ int main(){
         p = new char[1073741824];
         if(p!= NULL){
             cout<<"Memoria asignada: "<<i<<"Gb\n";
-            Sleep(1000);
+            Sleep(100);
         }
     }
 
