@@ -97,6 +97,79 @@ Tarea *BuscarPorNombre(Lista *lista){
 			aux = aux->sig;
 		}
 		cout<<"No se encontro la tarea.\n";
+		return NULL;
+	}
+}
+
+void TerminarTarea(Lista *&lista){
+	if(lista == NULL){
+		cout<<"Lista vacia\n";
+	}else{
+		cout<<"Ingrese la tarea que ha sido completada\n";
+		Tarea *aux = BuscarPorNombre(lista);
+		if(aux!= NULL){
+			aux->estado = false;
+		}
+		
+		
+	}
+}
+
+void MostrarTareasCompletadas(Lista *lista){
+	if(lista == NULL){
+		cout<<"Lista vacia\n";
+	}else{
+		Tarea *aux = lista->t;
+		while(aux!=NULL){
+			if(aux->estado == false){
+				cout<<"Nombre: "<<aux->nombreTarea<<"\n";
+				cout<<"Descripcion: "<<aux->descripcion<<"\n";
+				if(aux->estado){
+					cout<<"Estado: Pendiente\n\n";
+				}else{
+					cout<<"Estado: Completada\n\n";
+				}
+			}
+			aux=aux->sig;
+			
+		}
+	}
+}
+
+void MostrarTareasNoCompletadas(Lista *lista){
+	if(lista == NULL){
+		cout<<"Lista vacia\n";
+	}else{
+		Tarea *aux = lista->t;
+		while(aux!=NULL){
+			if(aux->estado == true){
+				cout<<"Nombre: "<<aux->nombreTarea<<"\n";
+				cout<<"Descripcion: "<<aux->descripcion<<"\n";
+				if(aux->estado){
+					cout<<"Estado: Pendiente\n\n";
+				}else{
+					cout<<"Estado: Completada\n\n";
+				}
+			}
+			aux=aux->sig;
+			
+		}
+	}
+}
+void ReiniciarLista(Lista *&lista){
+	if(lista==NULL){
+		cout<<"La lista ya esta vacia\n";
+	}else{
+		Tarea *aux = lista->t;
+		Tarea *aux2 = aux;
+		while(aux!=NULL){
+			
+			aux2 = aux->sig;
+			delete aux;
+			aux = aux2;
+		}
+		cout<<"La lista ha sido reiniciada\n";
+		lista=NULL;
 	}
 }
 int main(){
@@ -109,7 +182,7 @@ int main(){
 		cout<<"2) Mostrar tareas \n";
 		cout<<"3) Mostrar cantidad de tareas pendientes\n";
 		cout<<"4) Mostrar tareas completadas\n";
-		cout<<"5) Buscar tarea por su ï¿½ndice\n";
+		cout<<"5) Buscar tarea por su índice\n";
 		cout<<"6) Buscar tarea por su nombre\n";
 		cout<<"7) Eliminar tarea\n";
 		cout<<"8) Reiniciar lista \n";
@@ -121,56 +194,40 @@ int main(){
 		switch(resp){
 			case 1:
 				agregarTarea(lista);
-				system("pause");
-				system("cls");
 				break;
 			case 2: 
 				MostrarLista(lista);
-				system("pause");
-				system("cls");
 				break;
 			case 3:
 				MostrarLongitud(lista);
-				system("pause");
-				system("cls");
 				break;
 			case 4:
-				system("pause");
-				system("cls");
+				MostrarTareasCompletadas(lista);
 				break;
 			case 5:
-				system("pause");
-				system("cls");
 				break;
 			case 6:
 				BuscarPorNombre(lista);
-				system("pause");
-				system("cls");
 				break;
 			case 7:
-				system("pause");
-				system("cls");
 				break;
 			case 8:
-				system("pause");
-				system("cls");
+				ReiniciarLista(lista);
 				break;
 			case 9:
-				system("pause");
-				system("cls");
+				TerminarTarea(lista);
 				break;
 			case 10:
-				system("pause");
-				system("cls");
+				MostrarTareasNoCompletadas(lista);
 				break;
 			case 11:
 				continuar = false;
 				break;
 			default:
 				cout<<"Ingrese una opcion existente\n";
-				system("pause");
-				system("cls");
 				break;
 		}
+		system("pause");
+		system("cls");
 	}
 };
